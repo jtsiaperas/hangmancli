@@ -4,23 +4,23 @@ function Word(input){
    var inputChars= [];
    for (var letter in input)
    {
-       inputChars.push(new Letter(letter));
+       inputChars.push(new Letter(input[letter]));
    }
    this.word = inputChars;
    this.showLetters = function(){
         var wordString = "";
-        for(var letter in word)
+        for(var i = 0; i<this.word.length; i++)
         {
-             wordString += letter;
+             wordString += this.word[i] + " ";
         }
         console.log(wordString);
    }
 
    this.checkGuess = function(char){
         var correct = false;
-        for (var letter in word)
+        for (var i = 0; i<this.word.length; i++)
         {
-             if (letter.isMatch(char))
+             if (this.word[i].isMatch(char))
              {
              	correct = true;
              }
@@ -32,6 +32,8 @@ function Word(input){
 
 var test = new Word("Austin");
 test.showLetters();
+
+console.log(test.checkGuess("A"));
 if (test.checkGuess("A"))
 {
 	test.showLetters();
