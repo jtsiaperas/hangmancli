@@ -13,9 +13,8 @@ console.log("The number of blanks shows how many letters are in the word.");
 console.log("If you guess a correct letter, it will be made visible.");
 console.log("If you guess all the letters you win!");
 console.log("You can quit at any time by typing quit");
-var secretWord = "Austin";
+var secretWord = "Banana";
 var word = new Word(secretWord);
-var correct = 0;
 var chances = 10;
 
 word.showLetters();
@@ -35,11 +34,7 @@ rl.on("line", (input) => {
 	{
 		guesses.push(entry);
 		guessString += entry + " ";
-        if (word.checkGuess(entry))
-        {
-        	correct++;
-        }
-        else
+        if (word.checkGuess(entry) == false)
         {
         	console.log("That is incorrect!");
         	chances--;
@@ -50,7 +45,7 @@ rl.on("line", (input) => {
 	{
 		console.log("You already guessed that letter!");
 	}
-	if (correct == word.word.length)
+	if (word.numberCorrect == word.word.length)
 	{
 		word.showLetters();
 		console.log("Congratulations! You win! Would you like to play again? Please type yes or no.");

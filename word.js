@@ -7,6 +7,7 @@ function Word(input){
        inputChars.push(new Letter(input[letter].toUpperCase()));
    }
    this.word = inputChars;
+   this.numberCorrect = 0;
    this.showLetters = function(){
         var wordString = "";
         for(var i = 0; i<this.word.length; i++)
@@ -23,6 +24,8 @@ function Word(input){
              if (this.word[i].isMatch(char))
              {
              	correct = true;
+             	this.numberCorrect++;
+             	console.log(this.numberCorrect);
              }
         }
         return correct;

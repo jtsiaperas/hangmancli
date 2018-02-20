@@ -13,8 +13,9 @@ function Letter(char){
     	if (this.char === char)
     	{ 
     	    this.guessed = true;
+    	    return true;
     	}
-    	return this.guessed;
+    	return false;
     } 
 }
 
