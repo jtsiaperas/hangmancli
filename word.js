@@ -25,7 +25,6 @@ function Word(input){
              {
              	correct = true;
              	this.numberCorrect++;
-             	console.log(this.numberCorrect);
              }
         }
         return correct;

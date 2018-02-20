@@ -1,4 +1,6 @@
 var Word = require("./word.js");
+var list = require("./list.js");
+
 const readline = require('readline');
 const rl = readline.createInterface({
   input: process.stdin,
@@ -13,7 +15,7 @@ console.log("The number of blanks shows how many letters are in the word.");
 console.log("If you guess a correct letter, it will be made visible.");
 console.log("If you guess all the letters you win!");
 console.log("You can quit at any time by typing quit");
-var secretWord = "Banana";
+var secretWord = list[Math.floor(Math.random() * list.length + 1)];
 var word = new Word(secretWord);
 var chances = 10;
 
@@ -27,8 +29,11 @@ rl.on("line", (input) => {
 	    rl.close();	
 	}
     else if (entry == "YES"){
-    	console.log("Sorry, we haven't implemented this yet.");
-        rl.close();
+    	secretWord = list[Math.floor(Math.random() * list.length + 1)];
+        word = new Word(secretWord);
+        chances = 10;
+        guessString = "";
+        guesses = [];
     }
 	else if (guesses.indexOf(entry) == -1)
 	{
