@@ -30,12 +30,4 @@ function Word(input){
 
 }
 
-var test = new Word("Austin");
-test.showLetters();
-
-console.log(test.checkGuess("A"));
-if (test.checkGuess("A"))
-{
-	test.showLetters();
-}
 module.exports = Word;
