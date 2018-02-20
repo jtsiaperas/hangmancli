@@ -4,7 +4,7 @@ function Word(input){
    var inputChars= [];
    for (var letter in input)
    {
-       inputChars.push(new Letter(input[letter]));
+       inputChars.push(new Letter(input[letter].toUpperCase()));
    }
    this.word = inputChars;
    this.showLetters = function(){

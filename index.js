@@ -13,24 +13,29 @@ console.log("The number of blanks shows how many letters are in the word.");
 console.log("If you guess a correct letter, it will be made visible.");
 console.log("If you guess all the letters you win!");
 console.log("You can quit at any time by typing quit");
-var secretWord = new Word("Austin");
+var secretWord = "Austin";
+var word = new Word(secretWord);
 var correct = 0;
 var chances = 10;
-secretWord.showLetters();
+console.log(word.word.length);
+word.showLetters();
 var guessString = "";
 rl.on("line", (input) => {
 	var entry = input.toUpperCase();
+	console.log(entry);
 	if ( entry == "QUIT" || entry == "NO")
 	{
 	    console.log("Thank you for playing!")
 	    rl.close();	
 	}
-    if (entry == "YES")
-	if (guesses.indexOf(entry) == -1)
+    else if (entry == "YES"){
+    	console.log("Sorry, we haven't implemented this yet.");
+    }
+	else if (guesses.indexOf(entry) == -1)
 	{
 		guesses.push(entry);
 		guessString += entry + " ";
-        if (secretWord.checkGuess(entry))
+        if (word.checkGuess(entry))
         {
         	correct++;
         }
@@ -43,13 +48,21 @@ rl.on("line", (input) => {
 	}
 	else
 	{
-		console.log("You already guessed that letter!")
+		console.log("You already guessed that letter!");
 	}
-	secretWord.showLetters();
-	if (correct == secretWord.length)
+	word.showLetters();
+
+	if (correct == word.word.length)
 	{
-		console.log("Congratulations! You win! Would you like to play again? Please type yes or no.")
+		console.log("Congratulations! You win! Would you like to play again? Please type yes or no.");
 	}
-	console.log(`Letters guessed: ${guessString}`)
+	else if (chances == 0)
+	{
+		console.log("Sorry, you lose!")
+    }
+    else
+    {
+    	console.log(`Letters guessed: ${guessString}`);
+    }
 });
 
