@@ -17,19 +17,19 @@ var secretWord = "Austin";
 var word = new Word(secretWord);
 var correct = 0;
 var chances = 10;
-console.log(word.word.length);
+
 word.showLetters();
 var guessString = "";
 rl.on("line", (input) => {
 	var entry = input.toUpperCase();
-	console.log(entry);
+	
 	if ( entry == "QUIT" || entry == "NO")
 	{
-	    console.log("Thank you for playing!")
 	    rl.close();	
 	}
     else if (entry == "YES"){
     	console.log("Sorry, we haven't implemented this yet.");
+        rl.close();
     }
 	else if (guesses.indexOf(entry) == -1)
 	{
@@ -46,23 +46,29 @@ rl.on("line", (input) => {
         	console.log(`You have ${chances} chances remaining.`);
         }
 	}
-	else
+	else if (guesses.indexOf(entry) != -1)
 	{
 		console.log("You already guessed that letter!");
 	}
-	word.showLetters();
-
 	if (correct == word.word.length)
 	{
+		word.showLetters();
 		console.log("Congratulations! You win! Would you like to play again? Please type yes or no.");
 	}
 	else if (chances == 0)
 	{
-		console.log("Sorry, you lose!")
+		console.log(`Sorry, you lose! The word was ${secretWord}`);
+		console.log("Would you like to play again? Please type yes or no.");
     }
     else
     {
     	console.log(`Letters guessed: ${guessString}`);
+        word.showLetters();
     }
+
+    
+}).on('close', () => {
+  console.log('Thank you for playing!');
+  process.exit(0);
 });
 
